@@ -1,4 +1,4 @@
-package Z3ConfigurationGenerator;
+package z3ConfigurationGenerator;
 
 import java.lang.reflect.Array;
 

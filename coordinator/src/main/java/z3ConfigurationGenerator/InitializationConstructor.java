@@ -1,4 +1,4 @@
-package Z3ConfigurationGenerator;
+package z3ConfigurationGenerator;
 
 import com.microsoft.z3.BoolExpr;
 

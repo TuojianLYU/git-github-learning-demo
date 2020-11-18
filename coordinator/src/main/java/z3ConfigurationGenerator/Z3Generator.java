@@ -4,7 +4,7 @@ This is the correct version z3 configuration generator but
 what is missing is the functionality to receive the variables 
 from SysFileParser compoenent which is now implemented now.
 */
-package Z3ConfigurationGenerator;
+package z3ConfigurationGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import com.microsoft.z3.Context;
 import com.microsoft.z3.IntExpr;
 import com.microsoft.z3.Optimize;
 
-import Z3ConfigurationGenerator.MinimizeSumConstructor;
+import z3ConfigurationGenerator.MinimizeSumConstructor;
 
 public class Z3Generator {
 	String numOfContainers = "3";

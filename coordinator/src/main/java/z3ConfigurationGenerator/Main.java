@@ -1,10 +1,10 @@
-package Z3ConfigurationGenerator;
+package z3ConfigurationGenerator;
 
 import java.util.HashMap;
 
 import com.microsoft.z3.Context;
 
-import Z3ConfigurationGenerator.Z3Generator.TestFailedException;
+import z3ConfigurationGenerator.Z3Generator.TestFailedException;
 
 public class Main {
 
