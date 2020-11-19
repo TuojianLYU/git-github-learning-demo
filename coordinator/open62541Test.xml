@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System Name="open62541Test" Comment="">
+	<Identification>
+	</Identification>
+	<VersionInfo Version="1.0" Author="Tuojian" Date="2020-10-30">
+	</VersionInfo>
+	<Application Name="open62541TestApp" Comment="">
+		<SubAppNetwork>
+			<FB Name="BOOL2BOOL_1" Type="BOOL2BOOL" Comment="" x="6136.8421052631575" y="2121.0526315789475">
+			</FB>
+			<FB Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" Comment="" x="4631.578947368421" y="2105.2631578947367">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ID" Value="opc_ua[SUBSCRIBE;opc.tcp://localhost:4840#;/Objects/1:FlipFlop]"/>
+			</FB>
+			<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="421.05263157894734" y="631.578947368421">
+				<Parameter Name="DT" Value="T#1000ms"/>
+			</FB>
+			<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="1263.157894736842" y="526.3157894736842">
+			</FB>
+			<FB Name="E_SR" Type="E_SR" Comment="" x="2210.5263157894738" y="631.578947368421">
+			</FB>
+			<FB Name="BOOL2BOOL" Type="BOOL2BOOL" Comment="" x="2842.1052631578946" y="1263.157894736842">
+			</FB>
+			<FB Name="CLIENT_2" Type="CLIENT_1" Comment="" x="4421.0526315789475" y="315.7894736842105">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ID" Value="opc_ua[WRITE;opc.tcp://localhost:4840#;/Objects/1:FlipFlop]"/>
+			</FB>
+			<FB Name="CLIENT_2_1" Type="CLIENT_2_1" Comment="" x="5578.9473684210525" y="736.8421052631579">
+			</FB>
+			<FB Name="CLIENT_2_2" Type="CLIENT_2_1" Comment="" x="3789.4736842105262" y="1894.7368421052631">
+			</FB>
+			<EventConnections>
+				<Connection Source="SUBSCRIBE_1.IND" Destination="BOOL2BOOL_1.REQ" Comment="" dx1="589.4736842105264"/>
+				<Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" Comment="" dx1="231.57894736842104"/>
+				<Connection Source="E_SWITCH.EO0" Destination="E_SR.S" Comment="" dx1="68.42105263157895"/>
+				<Connection Source="E_SWITCH.EO1" Destination="E_SR.R" Comment="" dx1="68.42105263157895"/>
+				<Connection Source="E_SR.EO" Destination="BOOL2BOOL.REQ" Comment="" dx1="257.89473684210526"/>
+				<Connection Source="BOOL2BOOL.CNF" Destination="CLIENT_2.REQ" Comment="" dx1="531.578947368421"/>
+			</EventConnections>
+			<DataConnections>
+				<Connection Source="SUBSCRIBE_1.RD_1" Destination="BOOL2BOOL_1.IN" Comment="" dx1="589.4736842105264"/>
+				<Connection Source="E_SR.Q" Destination="E_SWITCH.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="126.3157894736842"/>
+				<Connection Source="E_SR.Q" Destination="BOOL2BOOL.IN" Comment="" dx1="257.89473684210526"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2.SD_1" Comment="" dx1="210.52631578947367"/>
+				<Connection Source="CLIENT_2.QO" Destination="CLIENT_2_1.QI" Comment="" dx1="152.6315789473684"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_1.SD_1" Comment="" dx1="1094.7368421052631"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_1.SD_2" Comment="" dx1="126.3157894736842"/>
+				<Connection Source="CLIENT_2_1.QO" Destination="SUBSCRIBE_1.QI" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="673.6842105263158"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.QI" Comment="" dx1="200.0"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.SD_1" Comment="" dx1="200.0"/>
+				<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.SD_2" Comment="" dx1="200.0"/>
+			</DataConnections>
+		</SubAppNetwork>
+	</Application>
+	<Device Name="FORTE_PC" Type="FORTE_PC" Comment="" x="2636.842105263158" y="1478.9473684210527">
+		<Parameter Name="MGR_ID" Value="&quot;localhost:61499&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC" Comment="device profile"/>
+		<Attribute Name="Color" Type="STRING" Value="255,190,111" Comment="color"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="BOOL2BOOL_1" Type="BOOL2BOOL" Comment="" x="6526.315789473684" y="2000.0">
+				</FB>
+				<FB Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" Comment="" x="3157.8947368421054" y="1894.7368421052631">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="opc_ua[SUBSCRIBE;opc.tcp://localhost:4840#;/Objects/1:FlipFlop]"/>
+				</FB>
+				<FB Name="E_SR" Type="E_SR" Comment="" x="4526.315789473684" y="947.3684210526316">
+				</FB>
+				<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="3473.684210526316" y="1047.3684210526317">
+				</FB>
+				<FB Name="BOOL2BOOL" Type="BOOL2BOOL" Comment="" x="5257.894736842105" y="1157.8947368421052">
+				</FB>
+				<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="2626.315789473684" y="1047.3684210526317">
+					<Parameter Name="DT" Value="T#1000ms"/>
+				</FB>
+				<FB Name="CLIENT_2" Type="CLIENT_1" Comment="" x="6105.263157894737" y="421.05263157894734">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="opc_ua[WRITE;opc.tcp://localhost:4840#;/Objects/1:FlipFlop]"/>
+				</FB>
+				<FB Name="CLIENT_2_1" Type="CLIENT_2_1" Comment="" x="6431.578947368421" y="1952.6315789473683">
+				</FB>
+				<FB Name="CLIENT_2_2" Type="CLIENT_2_1" Comment="" x="2094.7368421052633" y="2226.315789473684">
+				</FB>
+				<EventConnections>
+					<Connection Source="SUBSCRIBE_1.IND" Destination="BOOL2BOOL_1.REQ" Comment=""/>
+					<Connection Source="START.COLD" Destination="SUBSCRIBE_1.INIT" Comment="" dx1="605.2631578947369"/>
+					<Connection Source="START.WARM" Destination="SUBSCRIBE_1.INIT" Comment="" dx1="605.2631578947369"/>
+					<Connection Source="E_SWITCH.EO0" Destination="E_SR.S" Comment="" dx1="121.05263157894737"/>
+					<Connection Source="E_SWITCH.EO1" Destination="E_SR.R" Comment="" dx1="121.05263157894737"/>
+					<Connection Source="E_SR.EO" Destination="BOOL2BOOL.REQ" Comment="" dx1="215.78947368421052"/>
+					<Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" Comment=""/>
+					<Connection Source="START.COLD" Destination="E_CYCLE.START" Comment="" dx1="831.578947368421"/>
+					<Connection Source="START.WARM" Destination="E_CYCLE.START" Comment="" dx1="831.578947368421"/>
+					<Connection Source="BOOL2BOOL.CNF" Destination="CLIENT_2.REQ" Comment="" dx1="147.3684210526316"/>
+					<Connection Source="START.COLD" Destination="CLIENT_2.INIT" Comment=""/>
+					<Connection Source="START.WARM" Destination="CLIENT_2.INIT" Comment="" dx1="2515.7894736842104"/>
+				</EventConnections>
+				<DataConnections>
+					<Connection Source="SUBSCRIBE_1.RD_1" Destination="BOOL2BOOL_1.IN" Comment="" dx1="1326.3157894736842"/>
+					<Connection Source="E_SR.Q" Destination="E_SWITCH.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="126.3157894736842"/>
+					<Connection Source="E_SR.Q" Destination="BOOL2BOOL.IN" Comment="" dx1="215.78947368421052"/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2.SD_1" Comment="" dx1="147.3684210526316"/>
+					<Connection Source="CLIENT_2.QO" Destination="CLIENT_2_1.QI" Comment=""/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_1.SD_1" Comment=""/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_1.SD_2" Comment=""/>
+					<Connection Source="CLIENT_2_1.QO" Destination="SUBSCRIBE_1.QI" Comment=""/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.QI" Comment=""/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.SD_1" Comment=""/>
+					<Connection Source="BOOL2BOOL.OUT" Destination="CLIENT_2_2.SD_2" Comment=""/>
+				</DataConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Mapping From="open62541TestApp.BOOL2BOOL_1" To="FORTE_PC.EMB_RES.BOOL2BOOL_1"/>
+	<Mapping From="open62541TestApp.SUBSCRIBE_1" To="FORTE_PC.EMB_RES.SUBSCRIBE_1"/>
+	<Mapping From="open62541TestApp.E_SR" To="FORTE_PC.EMB_RES.E_SR"/>
+	<Mapping From="open62541TestApp.E_SWITCH" To="FORTE_PC.EMB_RES.E_SWITCH"/>
+	<Mapping From="open62541TestApp.BOOL2BOOL" To="FORTE_PC.EMB_RES.BOOL2BOOL"/>
+	<Mapping From="open62541TestApp.E_CYCLE" To="FORTE_PC.EMB_RES.E_CYCLE"/>
+	<Mapping From="open62541TestApp.CLIENT_2" To="FORTE_PC.EMB_RES.CLIENT_2"/>
+	<Mapping From="open62541TestApp.CLIENT_2_1" To="FORTE_PC.EMB_RES.CLIENT_2_1"/>
+	<Mapping From="open62541TestApp.CLIENT_2_2" To="FORTE_PC.EMB_RES.CLIENT_2_2"/>
+	<Segment Name="Ethernet" Type="Ethernet" Comment="" x="4115.789473684211" y="715.7894736842105" dx1="1578.9473684210527">
+		<Attribute Name="Color" Type="STRING" Value="173,95,241" Comment="color"/>
+	</Segment>
+	<Link SegmentName="Ethernet" CommResource="FORTE_PC" Comment="">
+	</Link>
+</System>

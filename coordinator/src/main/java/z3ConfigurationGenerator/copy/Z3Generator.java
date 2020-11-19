@@ -4,15 +4,10 @@ This is the correct version z3 configuration generator but
 what is missing is the functionality to receive the variables 
 from SysFileParser compoenent which is now implemented now.
 */
-package z3ConfigurationGenerator;
+package z3ConfigurationGenerator.copy;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 import com.microsoft.z3.ArithExpr;
 import com.microsoft.z3.BoolExpr;
@@ -21,46 +16,21 @@ import com.microsoft.z3.IntExpr;
 import com.microsoft.z3.Optimize;
 
 import z3ConfigurationGenerator.MinimizeSumConstructor;
-import z3Parser.Z3Parser;
 
 public class Z3Generator {
 	String numOfContainers = "3";
-	int numOfFBs;
+	int numOfFBs = 10;
 	int numMaxFBs = 4;
 	IntExpr[][] intensity = new IntExpr[numOfFBs][];
+	HashMap<String, String> cfg = new HashMap<String, String>();
+	Context ctx = new Context(cfg);
 
-	public void initialization(String file, Z3Generator z3Generator, Context ctx, int numMaxFBs,
-			int numOfContainers) {
-		Z3Parser z3Parser = new Z3Parser();
-		try {
+	public Context getCtx() {
+		return this.ctx;
+	}
 
-			z3Parser.parsing(file, z3Parser);
-		} catch (ParserConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SAXException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		int[][] intensityTemp = new int[z3Parser.getNumOfFBs()][z3Parser.getNumOfFBs()];
-		IntExpr[][] intensity = new IntExpr[z3Parser.getNumOfFBs()][z3Parser.getNumOfFBs()];
-		intensityTemp = z3Parser.getIntensity();
-
-		for (int i = 0; i < intensityTemp.length; i++) {
-			for (int j = 0; j < intensityTemp.length; j++) {
-				intensity[i][j] = ctx.mkInt(intensityTemp[i][j]);
-			}
-		}
-
-		z3Generator.setNumOfContainers(Integer.toString(numOfContainers));
-		z3Generator.setNumMaxFBs(numMaxFBs);
-		z3Generator.setNumOfFBs(z3Parser.getNumOfFBs());
-		z3Generator.setIntensity(intensity);
-
+	public void setCtx(Context ctx) {
+		this.ctx = ctx;
 	}
 
 	public String getNumOfContainers() {
@@ -86,6 +56,25 @@ public class Z3Generator {
 	public void setNumMaxFBs(int numMaxFBs) {
 		this.numMaxFBs = numMaxFBs;
 	}
+	
+	
+
+//	public IntExpr[][] setIntensity(Context ctx) {
+//		for (int i = 0; i < numOfFBs; i++) {
+//			intensity[i] = new IntExpr[numOfFBs];
+//			for (int j = 0; j < numOfFBs; j++)
+//				intensity[i][j] = ctx.mkInt(0);
+//		}
+//		intensity[0][1] = ctx.mkInt(3);
+//		intensity[1][0] = ctx.mkInt(3);
+//		intensity[1][2] = ctx.mkInt(3);
+//		intensity[2][1] = ctx.mkInt(3);
+//		intensity[2][3] = ctx.mkInt(2);
+//		intensity[3][2] = ctx.mkInt(2);
+//		intensity[3][4] = ctx.mkInt(1);
+//		intensity[4][3] = ctx.mkInt(1);
+//		return intensity;
+//	}
 
 	public IntExpr[][] getIntensity() {
 		return intensity;
@@ -95,7 +84,7 @@ public class Z3Generator {
 		this.intensity = intensity;
 	}
 
-	public void generating(Context ctx) throws TestFailedException {
+	public void generating() throws TestFailedException {
 
 		ConstraintsConstructor constraintsConstructor = new ConstraintsConstructor();
 		InitializationConstructor initializationConstructor = new InitializationConstructor();
@@ -120,7 +109,7 @@ public class Z3Generator {
 		// generating the (declare-const x Int) and (>= x 1)(<= x 3) and (= x1 x2)(=
 		// x1 x3)
 		// and the final assert expr
-		numMaxFBs += 1; // the real number is the number of taken balls not the maximum number, so it
+		numMaxFBs += 1;	// the real number is the number of taken balls not the maximum number, so it
 						// should plus 1
 		initialization = initializationConstructor.initializationConstructing(numOfFBs, rangeLow, numOfContainers);
 		constraints = constraintsConstructor.getConstraints(numOfFBs, numMaxFBs);
@@ -143,7 +132,8 @@ public class Z3Generator {
 	}
 
 	@SuppressWarnings("serial")
-	public class TestFailedException extends Exception {
+	public
+	class TestFailedException extends Exception {
 		public TestFailedException() {
 			super("Check FAILED");
 		}

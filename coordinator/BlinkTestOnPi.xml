@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System Name="BlinkTestOnPi" Comment="">
+	<Identification>
+	</Identification>
+	<VersionInfo Version="1.0" Author="Tuojian" Date="2020-10-06">
+	</VersionInfo>
+	<Application Name="BlinkTestOnPiApp" Comment="">
+		<SubAppNetwork>
+			<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="1784.2105263157894" y="568.421052631579">
+			</FB>
+			<FB Name="E_SR" Type="E_SR" Comment="" x="2784.2105263157896" y="568.421052631579">
+			</FB>
+			<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="857.8947368421052" y="568.421052631579">
+				<Parameter Name="DT" Value="t#1000ms"/>
+			</FB>
+			<FB Name="QX" Type="QX" Comment="" x="3857.8947368421054" y="426.3157894736842">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="3"/>
+			</FB>
+			<EventConnections>
+				<Connection Source="E_SWITCH.EO1" Destination="E_SR.R" Comment=""/>
+				<Connection Source="E_SR.EO" Destination="QX.REQ" Comment="" dx1="242.10526315789474"/>
+				<Connection Source="E_SWITCH.EO0" Destination="E_SR.S" Comment=""/>
+				<Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" Comment=""/>
+			</EventConnections>
+			<DataConnections>
+				<Connection Source="E_SR.Q" Destination="QX.OUT" Comment="" dx1="294.7368421052632"/>
+				<Connection Source="E_SR.Q" Destination="E_SWITCH.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="126.3157894736842"/>
+			</DataConnections>
+		</SubAppNetwork>
+	</Application>
+	<Device Name="RaspberryPI" Type="RaspberryPI" Comment="" x="1368.421052631579" y="1052.6315789473683">
+		<Parameter Name="MGR_ID" Value="&quot;10.100.36.91:61499&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC" Comment="device profile"/>
+		<Attribute Name="Color" Type="STRING" Value="255,190,111" Comment="color"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="E_SR" Type="E_SR" Comment="" x="2784.2105263157896" y="568.421052631579">
+				</FB>
+				<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="857.8947368421052" y="568.421052631579">
+					<Parameter Name="DT" Value="t#1000ms"/>
+				</FB>
+				<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="1784.2105263157894" y="568.421052631579">
+				</FB>
+				<FB Name="PUBLISH_1" Type="PUBLISH_1" Comment="" x="3894.736842105263" y="0.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="239.0.0.1:61000"/>
+				</FB>
+				<EventConnections>
+					<Connection Source="E_CYCLE.EO" Destination="E_SWITCH.EI" Comment=""/>
+					<Connection Source="E_SWITCH.EO0" Destination="E_SR.S" Comment=""/>
+					<Connection Source="E_SWITCH.EO1" Destination="E_SR.R" Comment=""/>
+					<Connection Source="START.COLD" Destination="PUBLISH_1.INIT" Comment=""/>
+					<Connection Source="START.WARM" Destination="PUBLISH_1.INIT" Comment="" dx1="1515.7894736842104"/>
+					<Connection Source="E_SR.EO" Destination="PUBLISH_1.REQ" Comment="" dx1="294.7368421052632"/>
+					<Connection Source="PUBLISH_1.INITO" Destination="E_CYCLE.START" Comment="" dx1="210.52631578947367" dx2="557.8947368421052" dy="1268.421052631579"/>
+				</EventConnections>
+				<DataConnections>
+					<Connection Source="E_SR.Q" Destination="E_SWITCH.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="126.3157894736842"/>
+					<Connection Source="E_SR.Q" Destination="PUBLISH_1.SD_1" Comment="" dx1="436.84210526315786"/>
+				</DataConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Device Name="RaspberryPI_2" Type="RaspberryPI" Comment="" x="4210.526315789473" y="1052.6315789473683">
+		<Parameter Name="MGR_ID" Value="&quot;10.100.36.91:61500&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC" Comment="device profile"/>
+		<Attribute Name="Color" Type="STRING" Value="176,64,218" Comment="color"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="QX" Type="QX" Comment="" x="3857.8947368421054" y="426.3157894736842">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="3"/>
+				</FB>
+				<FB Name="SUBSCRIBE_1" Type="SUBSCRIBE_1" Comment="" x="1578.9473684210527" y="0.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="239.0.0.1:61000"/>
+				</FB>
+				<EventConnections>
+					<Connection Source="START.COLD" Destination="SUBSCRIBE_1.INIT" Comment=""/>
+					<Connection Source="START.WARM" Destination="SUBSCRIBE_1.INIT" Comment="" dx1="463.1578947368421"/>
+					<Connection Source="SUBSCRIBE_1.IND" Destination="QX.REQ" Comment="" dx1="815.7894736842105"/>
+					<Connection Source="SUBSCRIBE_1.INITO" Destination="QX.INIT" Comment="" dx1="1010.5263157894736"/>
+				</EventConnections>
+				<DataConnections>
+					<Connection Source="SUBSCRIBE_1.RD_1" Destination="QX.OUT" Comment="" dx1="815.7894736842105"/>
+				</DataConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Mapping From="BlinkTestOnPiApp.E_SR" To="RaspberryPI.EMB_RES.E_SR"/>
+	<Mapping From="BlinkTestOnPiApp.E_CYCLE" To="RaspberryPI.EMB_RES.E_CYCLE"/>
+	<Mapping From="BlinkTestOnPiApp.E_SWITCH" To="RaspberryPI.EMB_RES.E_SWITCH"/>
+	<Mapping From="BlinkTestOnPiApp.QX" To="RaspberryPI_2.EMB_RES.QX"/>
+	<Segment Name="Ethernet" Type="Ethernet" Comment="" x="2526.315789473684" y="842.1052631578947" dx1="1068.421052631579">
+		<Attribute Name="Color" Type="STRING" Value="142,132,208" Comment="color"/>
+	</Segment>
+	<Link SegmentName="Ethernet" CommResource="RaspberryPI" Comment="">
+	</Link>
+	<Link SegmentName="Ethernet" CommResource="RaspberryPI_2" Comment="">
+	</Link>
+</System>
