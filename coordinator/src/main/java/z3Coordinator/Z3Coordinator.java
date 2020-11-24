@@ -13,11 +13,10 @@ public class Z3Coordinator {
 		HashMap<String, String> cfg = new HashMap<String, String>();
 		cfg.put("model", "true");
 		Context ctx = new Context(cfg);
-		
-		
+
 		int numMaxFBs = 5;
 		int numOfContainers = 5;
-		String filepath = "open62541Test.xml";
+		String filepath = "testSysFile.xml";
 
 		Z3Generator z3Generator = new Z3Generator();
 		z3Generator.initialization(filepath, z3Generator, ctx, numMaxFBs, numOfContainers);
@@ -27,6 +26,5 @@ public class Z3Coordinator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 }

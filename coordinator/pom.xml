@@ -17,5 +17,25 @@
     </plugins>
   </build>
   <dependencies>
+<dependency>
+		<groupId>io.prometheus</groupId>
+		<artifactId>simpleclient</artifactId>
+		<version>0.3.0</version>
+</dependency>
+<dependency>
+		<groupId>io.prometheus</groupId>
+		<artifactId>simpleclient_hotspot</artifactId>
+		<version>0.3.0</version>
+</dependency>
+<dependency>
+		<groupId>io.prometheus</groupId>
+		<artifactId>simpleclient_servlet</artifactId>
+		<version>0.3.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.3.6</version>
+</dependency>
   </dependencies>
 </project>
