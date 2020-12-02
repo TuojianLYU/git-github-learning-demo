@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System Name="ExtendedBinkLED" Comment="">
+	<VersionInfo Version="1.0" Author="Tuojian" Date="2020-11-26">
+	</VersionInfo>
+	<Application Name="ExtendedBinkLEDApp" Comment="">
+		<SubAppNetwork>
+			<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="1894.7368421052631" y="2278.9473684210525">
+				<Parameter Name="DT" Value="t#500ms"/>
+			</FB>
+			<FB Name="IX" Type="IX" Comment="" x="1894.7368421052631" y="700.0">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="2"/>
+			</FB>
+			<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="2842.1052631578946" y="910.5263157894736">
+			</FB>
+			<FB Name="E_CYCLE_1" Type="E_CYCLE" Comment="" x="2842.1052631578946" y="2278.9473684210525">
+				<Parameter Name="DT" Value="t#1s"/>
+			</FB>
+			<FB Name="E_SWITCH_1" Type="E_SWITCH" Comment="" x="3473.684210526316" y="1647.3684210526314">
+			</FB>
+			<FB Name="E_SR" Type="E_SR" Comment="" x="4205.263157894737" y="1436.842105263158">
+			</FB>
+			<FB Name="QX" Type="QX" Comment="" x="5257.894736842105" y="210.52631578947367">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="1"/>
+			</FB>
+			<FB Name="QX_1" Type="QX" Comment="" x="5257.894736842105" y="1015.7894736842105">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="3"/>
+			</FB>
+			<FB Name="QX_2" Type="QX" Comment="" x="5257.894736842105" y="1857.8947368421052">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="5"/>
+			</FB>
+			<FB Name="QX_3" Type="QX" Comment="" x="5257.894736842105" y="2700.0">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_4" Type="QX" Comment="" x="5257.894736842105" y="3684.2105263157896">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_5" Type="QX" Comment="" x="6105.263157894737" y="3157.8947368421054">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_6" Type="QX" Comment="" x="6105.263157894737" y="2100.0">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_7" Type="QX" Comment="" x="6105.263157894737" y="1157.8947368421052">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_8" Type="QX" Comment="" x="6105.263157894737" y="315.7894736842105">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="7"/>
+			</FB>
+			<FB Name="QX_12" Type="QX" Comment="" x="6089.473684210527" y="4305.263157894737">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="1"/>
+			</FB>
+			<FB Name="QX_13" Type="QX" Comment="" x="6089.473684210527" y="5105.263157894737">
+				<Parameter Name="QI" Value="true"/>
+				<Parameter Name="PARAMS" Value="3"/>
+			</FB>
+			<EventConnections>
+				<Connection Source="E_CYCLE.EO" Destination="IX.REQ" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="-231.57894736842104"/>
+				<Connection Source="IX.CNF" Destination="E_SWITCH.EI" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="E_SWITCH.EO0" Destination="E_CYCLE_1.START" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="563.1578947368421"/>
+				<Connection Source="E_SWITCH.EO1" Destination="E_CYCLE_1.STOP" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="457.89473684210526"/>
+				<Connection Source="E_CYCLE_1.EO" Destination="E_SWITCH_1.EI" Comment="" dx1="89.47368421052632"/>
+				<Connection Source="E_SWITCH_1.EO0" Destination="E_SR.S" Comment="" dx1="121.05263157894737"/>
+				<Connection Source="E_SWITCH_1.EO1" Destination="E_SR.R" Comment="" dx1="121.05263157894737"/>
+				<Connection Source="E_SR.EO" Destination="QX.REQ" Comment="" dx1="152.6315789473684"/>
+				<Connection Source="IX.INITO" Destination="QX.INIT" Comment="" dx1="1547.3684210526314"/>
+				<Connection Source="E_SR.EO" Destination="QX_1.REQ" Comment="" dx1="147.3684210526316"/>
+				<Connection Source="IX.INITO" Destination="QX_1.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="IX.INITO" Destination="QX_2.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_2.REQ" Comment="" dx1="157.89473684210526"/>
+				<Connection Source="E_SR.EO" Destination="QX_3.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_3.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_4.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_4.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_5.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_5.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_6.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_6.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_7.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_7.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_8.REQ" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="IX.INITO" Destination="QX_8.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="IX.INITO" Destination="QX_13.INIT" Comment="" dx1="1536.842105263158"/>
+				<Connection Source="E_SR.EO" Destination="QX_13.REQ" Comment="" dx1="147.3684210526316"/>
+				<Connection Source="IX.INITO" Destination="QX_12.INIT" Comment="" dx1="1547.3684210526314"/>
+				<Connection Source="E_SR.EO" Destination="QX_12.REQ" Comment="" dx1="152.6315789473684"/>
+			</EventConnections>
+			<DataConnections>
+				<Connection Source="IX.IN" Destination="E_SWITCH.G" Comment="" dx1="142.10526315789474"/>
+				<Connection Source="E_SR.Q" Destination="E_SWITCH_1.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_1.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_2.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_3.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_4.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_5.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_6.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_7.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_8.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_13.OUT" Comment="" dx1="373.6842105263158"/>
+				<Connection Source="E_SR.Q" Destination="QX_12.OUT" Comment="" dx1="373.6842105263158"/>
+			</DataConnections>
+		</SubAppNetwork>
+	</Application>
+	<Device Name="RaspberryPI" Type="RaspberryPI" Comment="" x="2589.4736842105262" y="1626.3157894736842">
+		<Parameter Name="MGR_ID" Value="&quot;localhost:61499&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC" Comment="device profile"/>
+		<Attribute Name="Color" Type="STRING" Value="255,190,111" Comment="color"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="E_CYCLE_1" Type="E_CYCLE" Comment="" x="2947.3684210526317" y="1473.6842105263158">
+					<Parameter Name="DT" Value="t#1s"/>
+				</FB>
+				<FB Name="E_CYCLE" Type="E_CYCLE" Comment="" x="2000.0" y="1473.6842105263158">
+					<Parameter Name="DT" Value="t#500ms"/>
+				</FB>
+				<FB Name="IX" Type="IX" Comment="" x="2000.0" y="-105.26315789473684">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="2"/>
+				</FB>
+				<FB Name="E_SR" Type="E_SR" Comment="" x="3789.4736842105262" y="1473.6842105263158">
+				</FB>
+				<FB Name="QX_1" Type="QX" Comment="" x="4526.315789473684" y="1047.3684210526317">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="3"/>
+				</FB>
+				<FB Name="QX_2" Type="QX" Comment="" x="4526.315789473684" y="2000.0">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="5"/>
+				</FB>
+				<FB Name="QX_3" Type="QX" Comment="" x="4526.315789473684" y="-631.578947368421">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX" Type="QX" Comment="" x="4526.315789473684" y="210.52631578947367">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="1"/>
+				</FB>
+				<FB Name="E_SWITCH_1" Type="E_SWITCH" Comment="" x="3578.9473684210525" y="210.52631578947367">
+				</FB>
+				<FB Name="E_SWITCH" Type="E_SWITCH" Comment="" x="2947.3684210526317" y="105.26315789473684">
+				</FB>
+				<FB Name="QX_8" Type="QX" Comment="" x="6105.263157894737" y="315.7894736842105">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX_5" Type="QX" Comment="" x="6105.263157894737" y="3157.8947368421054">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX_7" Type="QX" Comment="" x="6105.263157894737" y="1157.8947368421052">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX_6" Type="QX" Comment="" x="6105.263157894737" y="2100.0">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX_4" Type="QX" Comment="" x="5257.894736842105" y="3684.2105263157896">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="7"/>
+				</FB>
+				<FB Name="QX_13" Type="QX" Comment="" x="6089.473684210527" y="5105.263157894737">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="3"/>
+				</FB>
+				<FB Name="QX_12" Type="QX" Comment="" x="6089.473684210527" y="4305.263157894737">
+					<Parameter Name="QI" Value="true"/>
+					<Parameter Name="PARAMS" Value="1"/>
+				</FB>
+				<EventConnections>
+					<Connection Source="E_CYCLE.EO" Destination="IX.REQ" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="-736.8421052631579"/>
+					<Connection Source="IX.INITO" Destination="QX_1.INIT" Comment="" dx1="926.3157894736842"/>
+					<Connection Source="E_SR.EO" Destination="QX_1.REQ" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="IX.INITO" Destination="QX_2.INIT" Comment="" dx1="926.3157894736842"/>
+					<Connection Source="E_SR.EO" Destination="QX_2.REQ" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="IX.INITO" Destination="QX_3.INIT" Comment="" dx1="926.3157894736842"/>
+					<Connection Source="E_SR.EO" Destination="QX_3.REQ" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="IX.INITO" Destination="QX.INIT" Comment="" dx1="926.3157894736842"/>
+					<Connection Source="E_SR.EO" Destination="QX.REQ" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="E_CYCLE_1.EO" Destination="E_SWITCH_1.EI" Comment="" dx1="89.47368421052632"/>
+					<Connection Source="E_SWITCH_1.EO0" Destination="E_SR.S" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="631.578947368421"/>
+					<Connection Source="E_SWITCH_1.EO1" Destination="E_SR.R" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="631.578947368421"/>
+					<Connection Source="IX.CNF" Destination="E_SWITCH.EI" Comment="" dx1="136.8421052631579"/>
+					<Connection Source="E_SWITCH.EO0" Destination="E_CYCLE_1.START" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="684.2105263157895"/>
+					<Connection Source="E_SWITCH.EO1" Destination="E_CYCLE_1.STOP" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="684.2105263157895"/>
+					<Connection Source="START.COLD" Destination="IX.INIT" Comment="" dx1="673.6842105263158"/>
+					<Connection Source="START.WARM" Destination="IX.INIT" Comment="" dx1="673.6842105263158"/>
+					<Connection Source="START.COLD" Destination="QX_3.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.WARM" Destination="QX_3.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.COLD" Destination="QX.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.WARM" Destination="QX.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.COLD" Destination="QX_1.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.WARM" Destination="QX_1.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.COLD" Destination="QX_2.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="START.WARM" Destination="QX_2.INIT" Comment="" dx1="1936.842105263158"/>
+					<Connection Source="IX.INITO" Destination="QX_8.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_8.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_5.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_5.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_7.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_7.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_6.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_6.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_4.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_4.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_13.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_13.REQ" Comment=""/>
+					<Connection Source="IX.INITO" Destination="QX_12.INIT" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="QX_12.REQ" Comment=""/>
+				</EventConnections>
+				<DataConnections>
+					<Connection Source="E_SR.Q" Destination="QX_1.OUT" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="E_SR.Q" Destination="QX_2.OUT" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="E_SR.Q" Destination="QX_3.OUT" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="E_SR.Q" Destination="QX.OUT" Comment="" dx1="210.52631578947367"/>
+					<Connection Source="E_SR.Q" Destination="E_SWITCH_1.G" Comment="" dx1="63.1578947368421" dx2="63.1578947368421" dy="-631.578947368421"/>
+					<Connection Source="IX.IN" Destination="E_SWITCH.G" Comment="" dx1="136.8421052631579"/>
+					<Connection Source="E_SR.Q" Destination="QX_8.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_5.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_7.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_6.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_4.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_13.OUT" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="QX_12.OUT" Comment=""/>
+				</DataConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Mapping From="ExtendedBinkLEDApp.E_CYCLE_1" To="RaspberryPI.EMB_RES.E_CYCLE_1"/>
+	<Mapping From="ExtendedBinkLEDApp.E_CYCLE" To="RaspberryPI.EMB_RES.E_CYCLE"/>
+	<Mapping From="ExtendedBinkLEDApp.IX" To="RaspberryPI.EMB_RES.IX"/>
+	<Mapping From="ExtendedBinkLEDApp.E_SR" To="RaspberryPI.EMB_RES.E_SR"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_1" To="RaspberryPI.EMB_RES.QX_1"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_2" To="RaspberryPI.EMB_RES.QX_2"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_3" To="RaspberryPI.EMB_RES.QX_3"/>
+	<Mapping From="ExtendedBinkLEDApp.QX" To="RaspberryPI.EMB_RES.QX"/>
+	<Mapping From="ExtendedBinkLEDApp.E_SWITCH_1" To="RaspberryPI.EMB_RES.E_SWITCH_1"/>
+	<Mapping From="ExtendedBinkLEDApp.E_SWITCH" To="RaspberryPI.EMB_RES.E_SWITCH"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_8" To="RaspberryPI.EMB_RES.QX_8"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_5" To="RaspberryPI.EMB_RES.QX_5"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_7" To="RaspberryPI.EMB_RES.QX_7"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_6" To="RaspberryPI.EMB_RES.QX_6"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_4" To="RaspberryPI.EMB_RES.QX_4"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_13" To="RaspberryPI.EMB_RES.QX_13"/>
+	<Mapping From="ExtendedBinkLEDApp.QX_12" To="RaspberryPI.EMB_RES.QX_12"/>
+	<Segment Name="Ethernet" Type="Ethernet" Comment="" x="2868.4210526315787" y="1010.5263157894736" dx1="1578.9473684210527">
+		<Attribute Name="Color" Type="STRING" Value="222,119,123" Comment="color"/>
+	</Segment>
+	<Link SegmentName="Ethernet" CommResource="RaspberryPI" Comment="">
+	</Link>
+</System>

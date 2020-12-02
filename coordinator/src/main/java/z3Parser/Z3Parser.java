@@ -24,7 +24,8 @@ public class Z3Parser {
 	int numOfFBs;
 	int[][] intensity;
 
-	public static void parsing(String filepath, Z3Parser z3Parser) throws ParserConfigurationException, SAXException, IOException {
+	public void parsing(String filepath, Z3Parser z3Parser)
+			throws ParserConfigurationException, SAXException, IOException {
 
 		// Get Document Builder
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -41,7 +42,6 @@ public class Z3Parser {
 
 		z3Parser.setNumOfFBs(findFB(root).size());
 		z3Parser.setIntensity(calculateIntensity(findDC(root), findFB(root)));
-		
 
 	}
 
@@ -129,6 +129,12 @@ public class Z3Parser {
 
 				j++;
 			}
+		}
+		
+		System.out.println(functionBlockMap.size());
+		
+		for (Map.Entry<String, String> entry : functionBlockMap.entrySet()) {
+		    System.out.println(entry.getValue() + "---" + entry.getKey());
 		}
 
 		return functionBlockMap;

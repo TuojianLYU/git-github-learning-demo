@@ -6,6 +6,7 @@ it consideres the max number of FBs can be deployed
 to a single container with the introduced intensity[][].
 */
 import java.util.HashMap;
+import java.util.Map;
 
 import com.microsoft.z3.ArithExpr;
 import com.microsoft.z3.BoolExpr;
@@ -13,7 +14,7 @@ import com.microsoft.z3.Context;
 import com.microsoft.z3.IntExpr;
 import com.microsoft.z3.Optimize;
 
-public class IntensityZ3Generator2Backup {
+public class SkillGeneratorTest2 {
 
 	public static void main(String[] args) {
 
@@ -81,7 +82,21 @@ public class IntensityZ3Generator2Backup {
 			}
 		}
 
-		opt.Add(ctx.mkGe(x1Exp, ctx.mkInt(1)), ctx.mkLe(x1Exp, ctx.mkInt(3)), ctx.mkGe(x2Exp, ctx.mkInt(1)),
+		Map<String, String> swSkill = new HashMap<>();
+		Map<String, String> hwSkill = new HashMap<>();
+
+		swSkill.put("x1", "1");
+		swSkill.put("x2", "0");
+		swSkill.put("x3", "0");
+		swSkill.put("x4", "0");
+		swSkill.put("x5", "0");
+
+		hwSkill.put("1", "1");
+		hwSkill.put("2", "0");
+		hwSkill.put("3", "0");
+
+		opt.Add(
+				ctx.mkGe(x1Exp, ctx.mkInt(1)), ctx.mkLe(x1Exp, ctx.mkInt(3)), ctx.mkGe(x2Exp, ctx.mkInt(1)),
 				ctx.mkLe(x2Exp, ctx.mkInt(3)), ctx.mkGe(x3Exp, ctx.mkInt(1)), ctx.mkLe(x3Exp, ctx.mkInt(3)),
 				ctx.mkGe(x4Exp, ctx.mkInt(1)), ctx.mkLe(x4Exp, ctx.mkInt(3)), ctx.mkGe(x5Exp, ctx.mkInt(1)),
 				ctx.mkLe(x5Exp, ctx.mkInt(3)),
@@ -117,8 +132,8 @@ public class IntensityZ3Generator2Backup {
 										intensity[2][4], ctx.mkInt(0)),
 								(IntExpr) ctx.mkITE(ctx.mkDistinct(ctx.mkEq(x4Exp, x5Exp), ctx.mkTrue()),
 										intensity[3][4], ctx.mkInt(0))))
-				
-				);
+
+		);
 
 		Optimize.Handle ms = opt.MkMinimize(sumExp);
 

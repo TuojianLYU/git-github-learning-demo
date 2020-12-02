@@ -120,7 +120,7 @@ public class Z3Generator {
 			z3Expr += z3ExprTemplate.replace("expr", (String) ("x" + (i + 1)));
 		}
 		z3Expr += assertExpr;
-		be = minimizeSumConstructor.minimizeSumConstructing(ctx, xlist, numOfFBs, intensity, z3Expr, sumExp);
+		be = minimizeSumConstructor.minimizeSumConstructing(ctx, xlist, numOfFBs, intensity, sumExp);
 
 		// optimize the z3 question
 		Optimize opt = ctx.mkOptimize();
