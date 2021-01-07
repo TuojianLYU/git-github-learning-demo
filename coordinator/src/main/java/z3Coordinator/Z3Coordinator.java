@@ -2,7 +2,6 @@ package z3Coordinator;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -19,49 +18,23 @@ public class Z3Coordinator {
 	Context ctx;
 	Z3Generator z3Generator = new Z3Generator();
 	Z3Parser z3Parser = new Z3Parser();
+	String filePath;
 
 	public static void main(String[] args) {
+
 		long startTime = System.nanoTime();
-
-		Z3Coordinator z3Coordinator = new Z3Coordinator();
-		z3Coordinator.initialization(z3Coordinator);
-		Map<String, Integer> swSkill = new HashMap<>();
-		Map<String, Integer> hwSkill = new HashMap<>();
-
 		// This definition block is to define all the required variables for z3
 		// generator
 		// The swSkill and hwSkill are now manually defined
 		int numMaxFBs = 5;
 		int numOfContainers = 5;
 		String filepath = "xml/QX10.xml";
-		int numOfFBs = z3Coordinator.getZ3Parser().getNumOfFBs();
-		for (int i = 0; i < numOfFBs; i++) {
-			swSkill.put("x" + (i + 1), 0);
-		}
 
-		for (int i = 1; i <= numOfFBs; i++) {
-			hwSkill.put(Integer.toString(i), 0);
-		}
-//		swSkill.put("x2", 1);
-//		swSkill.put("x7", 1);
-//		swSkill.put("x8", 1);
-//		swSkill.put("x9", 1);
-//		swSkill.put("x10", 1);
-//		swSkill.put("x11", 1);
-//		swSkill.put("x12", 1);
-//		swSkill.put("x13", 1);
-//		swSkill.put("x14", 1);
-//		swSkill.put("x15", 1);
-//		swSkill.put("x16", 1);
-//		swSkill.put("x17", 1);
-//		swSkill.put("x18", 1);
-//		swSkill.put("x19", 1);
-//		swSkill.put("x20", 1);
-//		hwSkill.put(Integer.toString(2), 1);
-//		hwSkill.put(Integer.toString(3), 1);
+		Z3Coordinator z3Coordinator = new Z3Coordinator();
+		z3Coordinator.initialization(z3Coordinator, filepath);
 
-		z3Coordinator.getZ3Generator().initialization(z3Coordinator.getZ3Parser(), filepath,
-				z3Coordinator.getZ3Generator(), z3Coordinator.getCtx(), numMaxFBs, numOfContainers, hwSkill, hwSkill);
+		z3Coordinator.getZ3Generator().initialization(z3Coordinator.getZ3Parser(), z3Coordinator.getFilePath(),
+				z3Coordinator.getZ3Generator(), z3Coordinator.getCtx(), numMaxFBs, numOfContainers);
 
 		try {
 			z3Coordinator.getZ3Generator().generating(z3Coordinator.getCtx());
@@ -69,19 +42,19 @@ public class Z3Coordinator {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime)/1000000;  
-		System.out.println("Execution time = " + duration);
+		System.out.println("Execution time = " + ((System.nanoTime() - startTime) / 1000000));
+
 	}
 
-	public void initialization(Z3Coordinator z3Coordinator) {
+	public void initialization(Z3Coordinator z3Coordinator, String filepath) {
 		HashMap<String, String> cfg = new HashMap<String, String>();
 		cfg.put("model", "true");
 		Context ctx = new Context(cfg);
 		Z3Generator z3Generator = new Z3Generator();
 
 		// -------------------
-		String file = "xml/QX10.xml";
+		z3Coordinator.setFilePath(filepath);
+		String file = z3Coordinator.getFilePath();
 		Z3Parser z3Parser = new Z3Parser();
 		try {
 
@@ -125,6 +98,14 @@ public class Z3Coordinator {
 
 	public void setZ3Parser(Z3Parser z3Parser) {
 		this.z3Parser = z3Parser;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
 }

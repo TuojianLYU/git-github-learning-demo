@@ -1,4 +1,4 @@
-package z3ConfigurationGenerator.copy;
+package z3ConfigurationGenerator_Backup;
 
 import com.microsoft.z3.BoolExpr;
 

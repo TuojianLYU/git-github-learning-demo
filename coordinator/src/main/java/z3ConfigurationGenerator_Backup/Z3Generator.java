@@ -4,9 +4,11 @@ This is the correct version z3 configuration generator but
 what is missing is the functionality to receive the variables 
 from SysFileParser compoenent which is now implemented now.
 */
-package z3ConfigurationGenerator;
+package z3ConfigurationGenerator_Backup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.microsoft.z3.BoolExpr;
 import com.microsoft.z3.Context;
@@ -20,9 +22,11 @@ public class Z3Generator {
 	int numOfFBs;
 	int numMaxFBs;
 	IntExpr[][] intensity = new IntExpr[numOfFBs][];
+	Map<String, Integer> swSkill = new HashMap<>();
+	Map<String, Integer> hwSkill = new HashMap<>();
 
 	public void initialization(Z3Parser z3Parser, String file, Z3Generator z3Generator, Context ctx, int numMaxFBs,
-			int numOfContainers) {
+			int numOfContainers, Map<String, Integer> swSkill, Map<String, Integer> hwSkill) {
 
 		int[][] intensityTemp = new int[z3Parser.getNumOfFBs()][z3Parser.getNumOfFBs()];
 		IntExpr[][] intensity = new IntExpr[z3Parser.getNumOfFBs()][z3Parser.getNumOfFBs()];
@@ -38,6 +42,9 @@ public class Z3Generator {
 		z3Generator.setNumMaxFBs(numMaxFBs);
 		z3Generator.setNumOfFBs(z3Parser.getNumOfFBs());
 		z3Generator.setIntensity(intensity);
+		z3Generator.setHwSkill(hwSkill);
+		z3Generator.setSwSkill(swSkill);
+
 	}
 
 	public void generating(Context ctx) throws TestFailedException {
@@ -69,7 +76,6 @@ public class Z3Generator {
 		// and the final assert expr
 		numMaxFBs += 1; // the real number is the number of taken balls not the maximum number, so it
 						// should plus 1
-
 		initialization = initializationConstructor.initializationConstructing(numOfFBs, rangeLow, numOfContainers);
 		constraints = constraintsConstructor.getConstraints(numOfFBs, numMaxFBs);
 		assertExpr = assertExpr.replace("expr", initialization + constraints);
@@ -82,10 +88,10 @@ public class Z3Generator {
 		// combine all the constraints and objectives together as z3 format
 		z3Expr += assertExpr;
 		BoolExpr f = ctx.parseSMTLIB2String(z3Expr, null, null, null, null)[0];
-
 		be = minimizeSumConstructor.minimizeSumConstructing(ctx, xlist, numOfFBs, intensity, sumExp);
 		be = ctx.mkAnd(f, be);
-		be1 = hwSkillConstructor.skillConstructing(ctx, xlist, numOfFBs, intensity, numMaxFBs - 1, sumExp);
+		be1 = hwSkillConstructor.skillConstructing(ctx, xlist, numOfFBs, intensity, numMaxFBs - 1, sumExp, swSkill,
+				hwSkill);
 		be = ctx.mkAnd(be, be1);
 //		System.out.println(be);
 
@@ -110,6 +116,22 @@ public class Z3Generator {
 			return 1;
 		else
 			return binomi(n - 1, k) + binomi(n - 1, k - 1);
+	}
+
+	public Map<String, Integer> getSwSkill() {
+		return swSkill;
+	}
+
+	public void setSwSkill(Map<String, Integer> swSkill) {
+		this.swSkill = swSkill;
+	}
+
+	public Map<String, Integer> getHwSkill() {
+		return hwSkill;
+	}
+
+	public void setHwSkill(Map<String, Integer> hwSkill) {
+		this.hwSkill = hwSkill;
 	}
 
 	public String getNumOfContainers() {

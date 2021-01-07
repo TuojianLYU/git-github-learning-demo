@@ -1,4 +1,4 @@
-package z3ConfigurationGenerator.copy;
+package z3ConfigurationGenerator_Backup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class MinimizeSumConstructor {
 	
 
 	public BoolExpr minimizeSumConstructing(Context ctx, ArrayList<IntExpr> xlist, int numOfFBs, IntExpr[][] intensity,
-			String z3Expr, IntExpr sumExp) {
+			IntExpr sumExp) {
 
 //		IntExpr sumExp = ctx.mkIntConst("sum");
 
@@ -28,8 +28,9 @@ public class MinimizeSumConstructor {
 			}
 		}
 
-		BoolExpr f = ctx.parseSMTLIB2String(z3Expr, null, null, null, null)[0];
-		be = ctx.mkAnd(f, ctx.mkEq(sumExp, ae));
+//		BoolExpr f = ctx.parseSMTLIB2String(z3Expr, null, null, null, null)[0];
+//		be = ctx.mkAnd(f, ctx.mkEq(sumExp, ae));
+		be = ctx.mkAnd(ctx.mkEq(sumExp, ae));
 
 		return be;
 	}

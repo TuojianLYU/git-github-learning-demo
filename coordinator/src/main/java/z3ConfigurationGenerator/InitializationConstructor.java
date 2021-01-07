@@ -1,7 +1,5 @@
 package z3ConfigurationGenerator;
 
-import com.microsoft.z3.BoolExpr;
-
 public class InitializationConstructor {
 
 	public String initializationConstructing(int numOfFBs, String rangeLow, String rangeUp) {
@@ -15,11 +13,6 @@ public class InitializationConstructor {
 			initialization += initialTemplate.replace("le1", (String) ("x" + (i + 1))).replace("num1", rangeLow)
 					.replace("num2", rangeUp);
 		}
-		
-		//-------------a new test------------
-//		BoolExpr be = ctx.mkAnd();
-		
-		//----------------end----------------
 
 		return initialization;
 	}

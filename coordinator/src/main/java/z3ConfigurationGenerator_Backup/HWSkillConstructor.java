@@ -1,4 +1,4 @@
-package z3ConfigurationGenerator;
+package z3ConfigurationGenerator_Backup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import com.microsoft.z3.IntExpr;
 public class HWSkillConstructor {
 
 	public BoolExpr skillConstructing(Context ctx, ArrayList<IntExpr> xlist, int numOfFBs, IntExpr[][] intensity,
-			int numOfMax, IntExpr sumExp) {
+			int numOfMax, IntExpr sumExp, Map<String, Integer> swSkill1, Map<String, Integer> hwSkill1) {
 		System.out.println("-------------This is the testing block info-------------------");
 
 		BoolExpr andBool = ctx.mkAnd();
