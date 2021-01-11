@@ -1,5 +1,11 @@
 package z3Coordinator;
 
+/*
+This is the coordinator to call other classes and methods here
+Date of this java doc is 07-01-2021
+Author: Tuojian Lyu
+*/
+
 import java.io.IOException;
 import java.util.HashMap;
 
