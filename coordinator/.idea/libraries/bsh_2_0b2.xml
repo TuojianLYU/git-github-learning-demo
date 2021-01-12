@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bsh-2.0b2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/bsh-2.0b2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
